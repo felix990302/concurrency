@@ -1,0 +1,295 @@
+\documentclass[10pt]{article} 
+
+\usepackage{fullpage}
+\usepackage{bookmark}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref} % for the URL
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage[amsmath,standard,thmmarks]{ntheorem} 
+\usepackage{physics}
+\usepackage{pst-tree} % for the trees
+\usepackage{verbatim} % for comments, for version control
+\usepackage{tabu}
+\usepackage{tikz}
+\usepackage{float}
+
+\lstnewenvironment{python}{
+\lstset{frame=tb,
+language=Python,
+aboveskip=3mm,
+belowskip=3mm,
+showstringspaces=false,
+columns=flexible,
+basicstyle={\small\ttfamily},
+numbers=none,
+numberstyle=\tiny\color{Green},
+keywordstyle=\color{Violet},
+commentstyle=\color{Gray},
+stringstyle=\color{Brown},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=2}
+}
+{}
+
+\lstnewenvironment{cpp}{
+\lstset{
+backgroundcolor=\color{white!90!NavyBlue},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+basicstyle={\scriptsize\ttfamily},        % the size of the fonts that are used for the code
+breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+breaklines=true,                 % sets automatic line breaking
+captionpos=b,                    % sets the caption-position to bottom
+commentstyle=\color{Gray},    % comment style
+deletekeywords={...},            % if you want to delete keywords from the given language
+escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+% firstnumber=1000,                % start line enumeration with line 1000
+frame=single,	                   % adds a frame around the code
+keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+keywordstyle=\color{Cyan},       % keyword style
+language=c++,                 % the language of the code
+morekeywords={*,...},            % if you want to add more keywords to the set
+% numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+% numbersep=5pt,                   % how far the line-numbers are from the code
+% numberstyle=\tiny\color{Green}, % the style that is used for the line-numbers
+rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+showstringspaces=false,          % underline spaces within strings only
+showtabs=false,                  % show tabs within strings adding particular underscores
+stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+stringstyle=\color{GoldenRod},     % string literal style
+tabsize=2,	                   % sets default tabsize to 2 spaces
+title=\lstname}                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+{}
+
+% floor, ceiling, set
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+\DeclarePairedDelimiter{\iprod}{\langle}{\rangle}
+
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\mean}{mean}
+
+% commonly used sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\sset}{\subseteq}
+
+\theoremstyle{break}
+\theorembodyfont{\upshape}
+
+\newtheorem{thm}{Theorem}[subsection]
+\tcolorboxenvironment{thm}{
+enhanced jigsaw,
+colframe=Dandelion,
+colback=White!90!Dandelion,
+drop fuzzy shadow east,
+rightrule=2mm,
+sharp corners,
+before skip=10pt,after skip=10pt
+}
+
+\newtheorem{cor}{Corollary}[thm]
+\tcolorboxenvironment{cor}{
+boxrule=0pt,
+boxsep=0pt,
+colback={White!90!RoyalPurple},
+enhanced jigsaw,
+borderline west={2pt}{0pt}{RoyalPurple},
+sharp corners,
+before skip=10pt,
+after skip=10pt,
+breakable
+}
+
+\newtheorem{lem}[thm]{Lemma}
+\tcolorboxenvironment{lem}{
+enhanced jigsaw,
+colframe=Red,
+colback={White!95!Red},
+rightrule=2mm,
+sharp corners,
+before skip=10pt,after skip=10pt
+}
+
+\newtheorem{ex}[thm]{Example}
+\tcolorboxenvironment{ex}{% from ntheorem
+blanker,left=5mm,
+sharp corners,
+before skip=10pt,after skip=10pt,
+borderline west={2pt}{0pt}{Gray}
+}
+
+\newtheorem*{pf}{Proof}
+\tcolorboxenvironment{pf}{% from ntheorem
+breakable,blanker,left=5mm,
+sharp corners,
+before skip=10pt,after skip=10pt,
+borderline west={2pt}{0pt}{NavyBlue!80!white}
+}
+
+\newtheorem{defn}{Definition}[subsection]
+\tcolorboxenvironment{defn}{
+enhanced jigsaw,
+colframe=Cerulean,
+colback=White!90!Cerulean,
+drop fuzzy shadow east,
+rightrule=2mm,
+sharp corners,
+before skip=10pt,after skip=10pt
+}
+
+\newtheorem{prop}[thm]{Proposition}
+\tcolorboxenvironment{prop}{
+boxrule=0pt,
+boxsep=0pt,
+colback={White!90!Green},
+enhanced jigsaw,
+borderline west={2pt}{0pt}{Green},
+sharp corners,
+before skip=10pt,
+after skip=10pt,
+breakable
+}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{2pt}
+
+
+\begin{document}
+\let\ref\Cref
+
+\title{\bf{Concurrency in C++}}
+\date{\today}
+\author{Felix Zhou}
+
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+\section{Introduction}
+\subsection{What is Concurrency?}
+\begin{defn}[Concurrency]
+    A single system performing multiple independent activities in parallel rather than sequentially.
+\end{defn}
+
+There are many ways this can benefit us such as running multiple processes, possibly even over different machines, to achieve a single computational task.
+We will focus on \textit{multithreading}, which concerns more what we can do on a single machine.
+
+\subsection{What is Multithreading?}
+\begin{defn}[Multithreading]
+    Multithreading is a type of execution model that allows multiple threads to exist within the context of a process such that they execute independently but share their process resources.
+\end{defn}
+
+We can think of this as having two workers working on a single site (multithreading) versus having two workers working on two different sites (multiprocessing).
+Both can achieve performance gains but we will focus on the first one.
+
+\subsection{Reasons for Multithreading}
+\begin{defn}[Embarrassingly/Naturally/Conveniently Parallel/Concurrent]
+    Algorithms such that increasing the number of hardware threads would lead to improved parallelism in of the algorithm.
+\end{defn}
+
+\subsubsection{Performance}
+This is the main selling point of multithreading.
+If you are familiar with machine learning, or any sort of computational linear algebra, you would know that matrix multiplication can be performed in parallel to achieve speed ups.
+Another (not completely) relevant example is Google Chrome, which by default starts a new \textbf{process} for every tab you open, making it very resource intensive but blazing fast.
+
+\subsubsection{Seperation of Concerns}
+This is the lesser known but arguably equally relevant reason to include multithreading in your tool-kit.
+Consider any sort of input-logic-display type of program.
+While waiting for user input is a blocking task, we could implement the logic so that it does not have to be blocked by the input!
+This would require some form of communication between threads, which we will address in future sections.
+
+
+\newpage
+\section{Thread Management}
+Let $A$ be an array of size $n$ and $f$ a function returning nothing that we wish to apply to each element of the array seperately.
+It might be a good idea to parallellize this!
+
+This begs the question of how many threads should we employ so that we can gain the most performance increase.
+
+Naively, we may choose to use one thread per element of the array but doing so shows ignorance of the overhead of thread allocation.
+We would also be ignoring the overhead of our processors managing the threads.
+
+A more ideal method is to decide the number of hardware threads at run-time, divide $A$ into blocks of size $B$, and allocate $\floor*{\frac{n}{B}}-1$ threads.
+Note the $-1$ is due to the fact that the caller thread should be able to do work as well.
+
+
+\newpage
+\section{Sharing Data}
+\subsection{Race Conditions}
+\begin{defn}[(Problematic) Race Condition]
+    When there is an outcome which depends on the relative ordering of execution of operations on two or more threads leading to broken invariants.
+\end{defn}
+
+\subsubsection{Mutexes}
+One way of avoiding race conditions is to group intermediate sequences which have broken invariants together and only allow the thread doing the modification to the data structure to see these steps.
+
+Essentially, we are marking the code which modifies a structure as \textit{mutually exclusive}, hence the term mutex.
+
+\subsubsection{Interfaces}
+It may be the case that in order to prevent race conditions when adapting an interface, we must group different functions together.
+
+\subsection{Deadlocks}
+Note that with the introduction of mutexes, we introduce a new problem.
+If threads 1 and 2 acquire locks $A, B$ respectively, then attempt to acquire $B, A$, this would lead to a deadlock.
+
+\begin{defn}[Deadlock]
+    When two threads hold one lock each and in addition attempts to acquire the locks of each other by waiting.
+\end{defn}
+
+This can normaly be avoided by always locking $A$ before $B$, but if the locks each protect an instance of the same type of data, this could lead to complications.
+
+\subsubsection{Fixed-Order Locking}
+If there is a way of putting instances of data in a total order such as indice in a linked list, choosing a fixed order in which we may lock instances is a sure way to prevent deadlocks.
+
+\subsubsection{Backoff}
+It may be that choosing a fixed order is not feasible or even possible.
+In this case, we can apply some sort of heuristic to try all the possible ways to lock instances of data until we lock everything.
+
+\subsubsection{Lock Hierarchy}
+This is a special case of fixed-order locking which checks for violations at run-time.
+We divide the program into layers and enforce the invariant that threads holding a lock from a layer with lower hierarchy is unable to acquire the lock with higher hierarchy.
+
+\subsection{Alternate Data Protection Schemes}
+\subsubsection{Protecting Data Once}
+In the case of, or similar to, lazy initialization of data, where we wish to perform a procedure once and protect it, it might be an overkill to use a mutex.
+We can employ some sort of once flag so that the initilization will only happen once.
+
+Our work in preventing deadlocks can be extended for any sort of issue where a cycle occurs in computation.
+
+
+\newpage
+\section{Synchronizing Threads}
+If there was no communication between our threads, we might as well just run them as different processes.
+
+\subsection{Waiting for an Event}
+We can loop until a flag has been set to indicate that we may continue processing on this thread, on the other hand, we can subscribe to a condition variable and have that variable notify a thread to wake up and continue execution.
+
+\subsection{Waiting for One-Off Events}
+We essentially wish to have some sort of a getter and setter between threads, with the setter only being able to set the value of data to be trasferred to another thread and the getter being able to retrieve the data, possibly multiple times.
+The getter can also then block until the setter has its value set.
+
+\subsection{Packaging Tasks}
+The idea of getters and setter between threads can be abstracted into packaged tasks.
+We can specify a callable and wrap it with a container which also contains a setter.
+The container can then ``give out'' getters.
+All this sets up the possibility of invoking our container with the appropriate parameters, which then triggers the setter, leading to any blocking getters being notified.
+
+\subsection{Waiting with a Time Limit}
+
+
+
+\end{document}
